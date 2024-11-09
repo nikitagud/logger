@@ -23,3 +23,16 @@ log4j.appender.FILE.File=mylogfile.log
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
 log4j.appender.FILE.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
 
+#####MAIN
+package org.example;
+import org.apache.log4j.Logger;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Logger logger = Logger.getLogger(Main.class.getName());
+        System.out.println("ordinary sout");
+        logger.info("test info log");
+        logger.error("test error log");
+    }
+}
