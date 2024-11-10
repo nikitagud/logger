@@ -1,0 +1,88 @@
+package org.example;
+
+import org.apache.log4j.Logger;
+import java.util.Scanner;
+
+public class Second {
+
+    public static void main(String[] args) {
+        Logger logger = Logger.getLogger(Second.class.getName());
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Read two numbers from user input
+        logger.info("Enter the first number (base):");
+        String input1 = scanner.nextLine();
+        logger.info("Enter the second number (exponent):");
+        String input2 = scanner.nextLine();
+
+        // Validate if both inputs are valid integers
+        if (isInteger(input1) && isInteger(input2)) {
+            int base = Integer.parseInt(input1);
+            int exponent = Integer.parseInt(input2);
+
+            // Calculate the exponentiation (base ^ exponent)
+            double result = Math.pow(base, exponent);
+
+            // Print the result of the exponentiation
+            logger.info("The result of " + base + " raised to the power of " + exponent + " is: " + result);
+        } else {
+            // If any input is not a valid integer, display the message
+            logger.info("Both numbers must be integers. Please enter valid integer values.");
+        }
+    }
+
+    // Method to check if a string is a valid integer
+    public static boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input); // Try to parse the input as an integer
+            return true; // If parsing succeeds, it's an integer
+        } catch (NumberFormatException e) {
+            return false; // If parsing fails, it's not an integer
+        }
+    }
+}
+
+package org.example;
+
+import org.apache.log4j.Logger;
+import java.util.Random;
+
+public class Second {
+
+    public static void main(String[] args) {
+        Logger logger = Logger.getLogger(Second.class.getName());
+        Random random = new Random();
+
+        // Define an array of 10 integers
+        int[] massive = new int[10];
+
+        // Fill the array with random values between -88 and 144
+        for (int i = 0; i < massive.length; i++) {
+            massive[i] = random.nextInt(233) - 88; // Generates numbers from -88 to 144
+
+            // Apply transformations based on the value of the number
+            if (massive[i] < 0 && massive[i] % 2 != 0) {
+                // Negative odd number: multiply by -1
+                massive[i] *= -1;
+            } else if (massive[i] > 0 && massive[i] % 2 != 0) {
+                // Positive odd number: add 10
+                massive[i] += 10;
+            } else if (massive[i] < 0 && massive[i] % 2 == 0) {
+                // Negative even number: multiply by -2
+                massive[i] *= -2;
+            } else if (massive[i] > 0 && massive[i] % 2 == 0) {
+                // Positive even number: add 20
+                massive[i] += 20;
+            }
+            // If it is 0, it stays unchanged (no need to do anything)
+        }
+
+        // Print the modified array
+        logger.info("Modified Massive:");
+        for (int num : massive) {
+            logger.info(num);
+        }
+    }
+}
+
