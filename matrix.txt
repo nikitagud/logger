@@ -1,0 +1,110 @@
+package org.example;
+
+import org.apache.log4j.Logger;
+
+public class Second {
+
+    public static void main(String[] args) {
+        Logger logger = Logger.getLogger(Second.class.getName());
+
+        // Define the first 4x4 matrix with the given values
+        int[][] matrix1 = {
+                {43, 81, 1, 10},
+                {-5, 94, 7, 11},
+                {4, 7, 144, 88},
+                {0, 5, 66, 100}
+        };
+
+        // Define the second 4x4 matrix with the given values
+        int[][] matrix2 = {
+                {41, 81, 5, 10},
+                {40, -55, -60, 80},
+                {10, 20, 66, 77},
+                {100, 102, 400, 500}
+        };
+
+        // Print both matrices
+        logger.info("First 4x4 Matrix:");
+        printMatrix(matrix1, logger);
+        logger.info("Second 4x4 Matrix:");
+        printMatrix(matrix2, logger);
+
+        // Calculate and log the sum of both matrices
+        int sumBothMatrices = calculateMatricesSum(matrix1, matrix2);
+        logger.info("Sum of all elements in both matrices: " + sumBothMatrices);
+
+        // Calculate and log the sum of diagonal elements of the first matrix
+        int diagonalSum = calculateDiagonalSum(matrix1);
+        logger.info("Sum of diagonal elements in the first matrix: " + diagonalSum);
+
+        // Calculate and log the sum of elements above the diagonal of the first matrix
+        int aboveDiagonalSum = calculateAboveDiagonalSum(matrix1);
+        logger.info("Sum of elements above the diagonal in the first matrix: " + aboveDiagonalSum);
+
+        // Calculate and log the sum of elements below the diagonal of the first matrix
+        int belowDiagonalSum = calculateBelowDiagonalSum(matrix1);
+        logger.info("Sum of elements below the diagonal in the first matrix: " + belowDiagonalSum);
+    }
+
+    // Method to print any matrix
+    public static void printMatrix(int[][] matrix, Logger logger) {
+        for (int i = 0; i < matrix.length; i++) {
+            String row = "";
+            for (int j = 0; j < matrix[i].length; j++) {
+                row += matrix[i][j] + "\t";
+            }
+            logger.info(row);
+        }
+    }
+
+    // Method to calculate the sum of all elements in both matrices
+    public static int calculateMatricesSum(int[][] matrix1, int[][] matrix2) {
+        int sum = 0;
+        sum += calculateMatrixSum(matrix1);
+        sum += calculateMatrixSum(matrix2);
+        return sum;
+    }
+
+    // Method to calculate the sum of all elements in a single matrix
+    public static int calculateMatrixSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                sum += matrix[i][j];
+            }
+        }
+        return sum;
+    }
+
+    // Method to calculate the sum of elements above the diagonal in the first matrix
+    public static int calculateAboveDiagonalSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = i + 1; j < matrix[i].length; j++) {
+                sum += matrix[i][j];
+            }
+        }
+        return sum;
+    }
+
+    // Method to calculate the sum of elements below the diagonal in the first matrix
+    public static int calculateBelowDiagonalSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 1; i < matrix.length; i++) {
+            for (int j = 0; j < i; j++) {
+                sum += matrix[i][j];
+            }
+        }
+        return sum;
+    }
+
+    // Method to calculate the sum of the diagonal elements in the first matrix
+    public static int calculateDiagonalSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            sum += matrix[i][i];
+        }
+        return sum;
+    }
+}
+
